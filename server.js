@@ -1,6 +1,12 @@
-var http = require('http')
-var port = process.env.PORT || 1337;
-http.createServer(function (req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello larserik\n');
-}).listen(port);
+var express = require('express');
+var app = express();
+
+app.get('/hello.txt', function(req, res){
+  var body = 'Hello World';
+  res.setHeader('Content-Type', 'text/plain');
+  res.setHeader('Content-Length', body.length);
+  res.end(body);
+});
+
+app.listen(process.env.PORT || 3000);
+console.log('Listening on port 3000');
